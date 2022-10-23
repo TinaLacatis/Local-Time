@@ -2,17 +2,18 @@ import { useState } from "react";
 import "../styles.css";
 
 export default function App() {
-  let time = new Date().toLocaleTimeString();
+  const [time, setTime] = useState("TIME");
 
-  const [title, currentHour] = useState("TIME");
-
-  function localHour() {
-    currentHour(time);
+  function updateTime() {
+    setInterval(() => {
+      setTime(new Date().toLocaleTimeString());
+    }, 1000);
   }
+
   return (
     <div className="container">
-      <h1>{title}</h1>
-      <button onClick={localHour}>Get Time</button>
+      <h1>{time}</h1>
+      <button onClick={updateTime}>Get Time</button>
     </div>
   );
 }
